@@ -34,7 +34,7 @@ if __name__ == "__main__":
         for i in range(5):
             image = pipe(prompt=prompt, image=orig_img, mask_image=mask).images[0]
             fp = original.split(".")[0]
-            image.save(f"./results/{fp}_{i}.png")
+            image.save(f"{fp}_{i}.png")
             print(f"done with {fp} at {i}")
         print(f"done with {original} completely")
             
