@@ -29,8 +29,8 @@ if __name__ == "__main__":
     image_pairs = pair_images_with_masks(directory)
     prompt = "Floor and Wall"
     for num, (original, mask) in enumerate(image_pairs): 
-        orig_img = Image.open(original)
-        mask = Image.open(mask)
+        orig_img = Image.open("./orig_mask_depth/" + original)
+        mask = Image.open("./orig_mask_depth/" + mask)
         for i in range(5):
             image = pipe(prompt=prompt, image=orig_img, mask_image=mask).images[0]
             fp = original.split(".")[0]
