@@ -31,12 +31,11 @@ if __name__ == "__main__":
     for num, (original, mask) in enumerate(image_pairs): 
         orig_img = Image.open("./orig_mask_depth/" + original)
         mask = Image.open("./orig_mask_depth/" + mask)
-        for i in range(5):
-            image = pipe(prompt=prompt, image=orig_img, mask_image=mask).images[0]
-            fp = original.split(".")[0]
-            image.save(f"{fp}_{i}.png")
-            print(f"done with {fp} at {i}")
-        print(f"done with {original} completely")
+        
+        image = pipe(prompt=prompt, image=orig_img, mask_image=mask).images[0]
+        fp = original.split(".")[0]
+        image.save(f"{fp}_output.png")
+        print(f"done with {fp}")
             
 
 
