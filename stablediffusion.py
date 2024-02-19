@@ -21,10 +21,15 @@ if __name__ == "__main__":
     python stablediffusion.py \ """
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
+    if device == "cuda":
+        dtype = torch.float16
+    else:
+        dtype = torch.float32
+
     pipe = StableDiffusionInpaintPipeline.from_pretrained(
-         "runwayml/stable-diffusion-inpainting", torch_dtype=torch.float32
+         "runwayml/stable-diffusion-inpainting", torch_dtype=dtype
      )
-    pipe = pipe.to("cpu")
+    pipe = pipe.to(device)
     directory = "./orig_mask_depth"
     image_pairs = pair_images_with_masks(directory)
     prompt = "Floor and Wall"
